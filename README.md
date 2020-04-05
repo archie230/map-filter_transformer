@@ -21,7 +21,7 @@ filter-call ::= “filter{” expression “}”
 
 call ::= map-call | filter-call
 
-call-chain ::= call | call “%%” call-chain
+call-chain ::= call | call “>%%>” call-chain
 
 Арифметические операции имеют стандартную семантику. 
 Операция “&” это логическое “и”, операция “|” --- логическое “или“.
@@ -39,4 +39,6 @@ call-chain ::= call | call “%%” call-chain
 ## Сборка
 make
 
-make debug *сборка с дампом дерева разбора*
+make debug **сборка с дампом дерева разбора**
+
+cd tests; ./run_test **запуск тестов**
