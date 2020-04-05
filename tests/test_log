@@ -1,0 +1,8 @@
+
+TEST 001 OK : answ = filter{((element+10)>10)}%>%map{((element+10)*(element+10))}  expected = filter{((element+10)>10)}%>%map{((element+10)*(element+10))}
+TEST 002 OK : answ = filter{((element<20)&(element>10))}%>%map{element}  expected = filter{((element<20)&(element>10))}%>%map{element}
+TEST 003 OK : answ = filter{(1=1)}%>%map{(((element+10)/(element+10))*(element+10))}  expected = filter{(1=1)}%>%map{(((element+10)/(element+10))*(element+10))}
+TEST 004 OK : answ = SYNTAX ERROR  expected = SYNTAX ERROR
+TEST 005 OK : answ = SYNTAX ERROR  expected = SYNTAX ERROR
+TEST 006 OK : answ = TYPE ERROR  expected = TYPE ERROR
+TEST 007 OK : answ = filter{((((element*3)-(3/5))*element)=1)}%>%map{(((element*3)-(3/5))*element)}  expected = filter{((((element*3)-(3/5))*element)=1)}%>%map{(((element*3)-(3/5))*element)}

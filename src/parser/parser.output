@@ -1,0 +1,314 @@
+Terminals unused in grammar
+
+   TERR
+
+
+Grammar
+
+    0 $accept: call-chain $end
+
+    1 call-chain: call
+    2           | call TNEXT call-chain
+
+    3 call: TMAP expression '}'
+    4     | TFILTER expression '}'
+
+    5 expression: TELEM
+    6           | TNUM
+    7           | binary_expression
+
+    8 binary_expression: '(' expression operation expression ')'
+
+    9 operation: TPLUS
+   10          | TMINUS
+   11          | TMUL
+   12          | TDIV
+   13          | TGR
+   14          | TLESS
+   15          | TEQ
+   16          | TAND
+   17          | TOR
+
+
+Terminals, with rules where they appear
+
+$end (0) 0
+'(' (40) 8
+')' (41) 8
+'}' (125) 3 4
+error (256)
+TFILTER (258) 4
+TMAP (259) 3
+TNUM (260) 6
+TPLUS (261) 9
+TMINUS (262) 10
+TMUL (263) 11
+TDIV (264) 12
+TGR (265) 13
+TLESS (266) 14
+TEQ (267) 15
+TOR (268) 17
+TAND (269) 16
+TNEXT (270) 2
+TELEM (271) 5
+TERR (272)
+
+
+Nonterminals, with rules where they appear
+
+$accept (21)
+    on left: 0
+call-chain (22)
+    on left: 1 2, on right: 0 2
+call (23)
+    on left: 3 4, on right: 1 2
+expression (24)
+    on left: 5 6 7, on right: 3 4 8
+binary_expression (25)
+    on left: 8, on right: 7
+operation (26)
+    on left: 9 10 11 12 13 14 15 16 17, on right: 8
+
+
+State 0
+
+    0 $accept: . call-chain $end
+
+    TFILTER  shift, and go to state 1
+    TMAP     shift, and go to state 2
+
+    call-chain  go to state 3
+    call        go to state 4
+
+
+State 1
+
+    4 call: TFILTER . expression '}'
+
+    TNUM   shift, and go to state 5
+    TELEM  shift, and go to state 6
+    '('    shift, and go to state 7
+
+    expression         go to state 8
+    binary_expression  go to state 9
+
+
+State 2
+
+    3 call: TMAP . expression '}'
+
+    TNUM   shift, and go to state 5
+    TELEM  shift, and go to state 6
+    '('    shift, and go to state 7
+
+    expression         go to state 10
+    binary_expression  go to state 9
+
+
+State 3
+
+    0 $accept: call-chain . $end
+
+    $end  shift, and go to state 11
+
+
+State 4
+
+    1 call-chain: call .
+    2           | call . TNEXT call-chain
+
+    TNEXT  shift, and go to state 12
+
+    $default  reduce using rule 1 (call-chain)
+
+
+State 5
+
+    6 expression: TNUM .
+
+    $default  reduce using rule 6 (expression)
+
+
+State 6
+
+    5 expression: TELEM .
+
+    $default  reduce using rule 5 (expression)
+
+
+State 7
+
+    8 binary_expression: '(' . expression operation expression ')'
+
+    TNUM   shift, and go to state 5
+    TELEM  shift, and go to state 6
+    '('    shift, and go to state 7
+
+    expression         go to state 13
+    binary_expression  go to state 9
+
+
+State 8
+
+    4 call: TFILTER expression . '}'
+
+    '}'  shift, and go to state 14
+
+
+State 9
+
+    7 expression: binary_expression .
+
+    $default  reduce using rule 7 (expression)
+
+
+State 10
+
+    3 call: TMAP expression . '}'
+
+    '}'  shift, and go to state 15
+
+
+State 11
+
+    0 $accept: call-chain $end .
+
+    $default  accept
+
+
+State 12
+
+    2 call-chain: call TNEXT . call-chain
+
+    TFILTER  shift, and go to state 1
+    TMAP     shift, and go to state 2
+
+    call-chain  go to state 16
+    call        go to state 4
+
+
+State 13
+
+    8 binary_expression: '(' expression . operation expression ')'
+
+    TPLUS   shift, and go to state 17
+    TMINUS  shift, and go to state 18
+    TMUL    shift, and go to state 19
+    TDIV    shift, and go to state 20
+    TGR     shift, and go to state 21
+    TLESS   shift, and go to state 22
+    TEQ     shift, and go to state 23
+    TOR     shift, and go to state 24
+    TAND    shift, and go to state 25
+
+    operation  go to state 26
+
+
+State 14
+
+    4 call: TFILTER expression '}' .
+
+    $default  reduce using rule 4 (call)
+
+
+State 15
+
+    3 call: TMAP expression '}' .
+
+    $default  reduce using rule 3 (call)
+
+
+State 16
+
+    2 call-chain: call TNEXT call-chain .
+
+    $default  reduce using rule 2 (call-chain)
+
+
+State 17
+
+    9 operation: TPLUS .
+
+    $default  reduce using rule 9 (operation)
+
+
+State 18
+
+   10 operation: TMINUS .
+
+    $default  reduce using rule 10 (operation)
+
+
+State 19
+
+   11 operation: TMUL .
+
+    $default  reduce using rule 11 (operation)
+
+
+State 20
+
+   12 operation: TDIV .
+
+    $default  reduce using rule 12 (operation)
+
+
+State 21
+
+   13 operation: TGR .
+
+    $default  reduce using rule 13 (operation)
+
+
+State 22
+
+   14 operation: TLESS .
+
+    $default  reduce using rule 14 (operation)
+
+
+State 23
+
+   15 operation: TEQ .
+
+    $default  reduce using rule 15 (operation)
+
+
+State 24
+
+   17 operation: TOR .
+
+    $default  reduce using rule 17 (operation)
+
+
+State 25
+
+   16 operation: TAND .
+
+    $default  reduce using rule 16 (operation)
+
+
+State 26
+
+    8 binary_expression: '(' expression operation . expression ')'
+
+    TNUM   shift, and go to state 5
+    TELEM  shift, and go to state 6
+    '('    shift, and go to state 7
+
+    expression         go to state 27
+    binary_expression  go to state 9
+
+
+State 27
+
+    8 binary_expression: '(' expression operation expression . ')'
+
+    ')'  shift, and go to state 28
+
+
+State 28
+
+    8 binary_expression: '(' expression operation expression ')' .
+
+    $default  reduce using rule 8 (binary_expression)

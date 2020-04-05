@@ -1,0 +1,1 @@
+map{(((element*3)-(3/5))*element)}%>%filter{(element=1)}

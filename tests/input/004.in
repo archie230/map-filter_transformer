@@ -1,0 +1,1 @@
+filter{(element>1494)}%>%filter{(element+element)>3000}%>%map{((element-1000)*2)}

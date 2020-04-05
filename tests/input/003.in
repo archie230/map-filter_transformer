@@ -1,0 +1,1 @@
+map{(element+10)}%>%map{((element/element)*element)}

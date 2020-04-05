@@ -1,0 +1,1 @@
+filter{((element<20)&(element>10))}%>%map{element}
